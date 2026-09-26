@@ -1,18 +1,19 @@
-import { useEffect, useEffectEvent, useState } from 'react';
-import heroImg from './assets/hero.png';
-import reactLogo from './assets/react.svg';
-import viteLogo from './assets/vite.svg';
+import { useEffect, useState } from 'react';
+import heroImg from '../assets/hero.png';
+import reactLogo from '../assets/react.svg';
+import viteLogo from '../assets/vite.svg';
 import './App.css';
+import { useStatistics } from './useStatistics';
 
 function App() {
   const [count, setCount] = useState(0);
+  const statistics = useStatistics(10);
 
   // //@ts-ignore
   // window.electron.getStaticData();
 
   useEffect(() => {
-    //@ts-ignore
-    window.electron.subscribeStatistics((stats) => console.log(stats));
+    return window.electron.subscribeChangeView((view) => console.log(view));
   }, []);
 
   return (
